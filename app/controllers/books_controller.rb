@@ -5,6 +5,7 @@ before_action :current_user, only: [:edit, :update]
     @user = @book.user
     @books = Book.find(params[:id])
     @book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   def index
