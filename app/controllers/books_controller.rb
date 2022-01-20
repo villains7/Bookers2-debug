@@ -1,9 +1,10 @@
 class BooksController < ApplicationController
 before_action :current_user, only: [:edit, :update]
   def show
-    @book = Book.new
+    @book = Book.find(params[:id])
     @user = @book.user
     @books = Book.find(params[:id])
+    @book_new = Book.new
   end
 
   def index
@@ -12,7 +13,6 @@ before_action :current_user, only: [:edit, :update]
   end
 
   def create
-    @user = current_user
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
