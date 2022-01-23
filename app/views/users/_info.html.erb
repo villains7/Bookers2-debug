@@ -9,6 +9,14 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
    </tr>
+   <tr>
+     <th>follows</th>
+     <th><%= link_to user.followings.count,followings_user_path(user) %></th>
+   </tr>
+   <tr>
+     <th>followers</th>
+     <th><%= link_to user.followers.count,followers_user_path(user) %></th>
+   </tr>
    </tbody>
 </table>
 
@@ -16,4 +24,17 @@
   <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
     <i class="fas fa-user-cog"></i>
   <% end %>
+   <% if user == current_user %>
+  <p></p>
+    <% else %>
+      <% if user.is_followed_by?(current_user) %>
+       <%= link_to user_relationships_path(user), method: :delete do %>
+       <button class="btn btn-info">フォロー解除</button>
+        <% end %>
+      <% else %>
+        <%= link_to user_relationships_path(user), method: :post do %>
+         <button class="btn btn-success">フォローする</button>
+        <% end %>
+      <% end %>
+    <% end %>
 </div>
