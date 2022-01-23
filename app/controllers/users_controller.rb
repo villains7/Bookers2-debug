@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
-    @userss = User.where.not(id: current_user.id)
   end
   def edit
     @user = User.find(params[:id])
@@ -36,7 +35,7 @@ class UsersController < ApplicationController
 
     def followers
       user = User.find(params[:id])
-      @users = user.followings
+      @users = user.followers
     end
 
   end
