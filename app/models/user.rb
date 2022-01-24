@@ -8,14 +8,14 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :relationships, foreign_key: :following_id
-  has_many :followings, through: :relationships,source: :follower
-  #through使うと中間テーブルを介した先のデータを取ってくることができる
-  has_many :reverse_of_rerationships, class_name: 'Relationship', foreign_key: :follower_id
-  has_many :followers, through: :reverse_of_rerationships, source: :following
+  has_many :followings, through: :relationships, source: :follower
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id
+  # 中間テーブルを介してデータを取れる
+  has_many :followers, through: :reverse_of_relationships, source: :following
   has_one_attached :profile_image
 
   def is_followed_by?(user)
-    reverse_of_rerationships.find_by(following_id: user.id).present?
+    reverse_of_relationships.find_by(following_id: user.id).present?
   end
 
 
