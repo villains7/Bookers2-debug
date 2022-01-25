@@ -1,0 +1,3 @@
+<% if user_signed_in? %>
+<% unless @book.like_user(current_user.id)blank? %>
+<%= link_to book_like_path(book_id: @book.id,id: @book.[0].id), method: :delete, remote: true do %>

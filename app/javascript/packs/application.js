@@ -13,6 +13,7 @@ import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 require ('jquery')
+require('test.js')
 
 Rails.start()
 Turbolinks.start()
