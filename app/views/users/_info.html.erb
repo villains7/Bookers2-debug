@@ -31,6 +31,7 @@
        <%= link_to user_relationships_path(user), method: :delete do %>
        <button class="btn btn-info">フォロー解除</button>
         <% end %>
+        <p><%= link_to "チャットを始める",chat_path(user.id) %></p>
       <% else %>
         <%= link_to user_relationships_path(user), method: :post do %>
          <button class="btn btn-success">フォローする</button>

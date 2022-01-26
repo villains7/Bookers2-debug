@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'chats/show'
   get '/search', to: 'searches#search'
-  get 'chat/:id',to: 'chats#show',as: 'chat'
+  resources :rooms, only: [:create]
+  get 'chat/:id', to: 'chats#show', as: 'chat'
   resources :chats, only: [:create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  devise_for :users
