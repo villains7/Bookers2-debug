@@ -6,11 +6,12 @@ before_action :current_user, only: [:edit, :update]
     @books = Book.find(params[:id])
     @book_new = Book.new
     @book_comment = BookComment.new
+    impressionist(@book,nil,unique: [:ip_address])
   end
 
   def index
     @books = Book.includes(:favorited_users).sort{|a,b| b.favorited_users.size <=> a.favorited_users.size}
-    @book = Book.new
+    @book_new = Book.new
   end
 
   def create
