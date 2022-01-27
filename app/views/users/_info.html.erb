@@ -19,10 +19,9 @@
    </tr>
    </tbody>
 </table>
-
+<% if!(user.name == "guestuser") %>
 <div class='row'>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-    <i class="fas fa-user-cog"></i>
+  <%= link_to "",edit_user_path(user), class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" do %>
   <% end %>
    <% if user == current_user %>
   <p></p>

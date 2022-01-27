@@ -17,6 +17,14 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_one_attached :profile_image
 
+
+  def self.guest
+    find_or_create_by!(name: 'guestuser',email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = 'guestuser'
+    end
+  end
+
   def is_followed_by?(user)
     reverse_of_relationships.find_by(following_id: user.id).present?
   end
