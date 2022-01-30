@@ -4,7 +4,9 @@ class FavoritesController < ApplicationController
     @book = Book.find(params[:book_id])
     favorite = current_user.favorites.new(book_id: @book.id)
     favorite.save
-    #redirect_to request.referer
+    flash[:notice] = 'いいねしました'
+    @book.create_notification_favorite(current_user)
+    redirect_to request.referer
   end
 
   def destroy
